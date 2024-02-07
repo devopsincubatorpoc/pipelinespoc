@@ -1,29 +1,43 @@
 pipeline {
-  agent any
-  stages {
-    stage('checkout') {
-      steps {
-        git(url: 'https://github.com/devopsincubatorpoc/pipelinespoc', branch: 'main', credentialsId: '73f0f829-d2dd-478e-bc77-0a1136155c99')
-      }
+    agent {
+        node ('slave1')
     }
-
-    stage('build') {
-      steps {
-        echo 'hello world'
-      }
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello Jenkins'
+            }
+        }
+        stage('Build') {
+            steps {
+                echo 'Building Hello World'
+                sh 'curl google.com'
+            }
+        }
+        stage('Release') {
+            steps {
+                echo 'Releasing Hello World'
+                sh 'curl facebook.com'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying Hello World'
+                sh 'curl yahoo.com'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing Hello World'
+                sh 'curl apple.com'
+            }
+        }  
+        stage('Monitor') {
+            steps {
+                echo 'Monitoring Hello World'
+                sh 'curl valtech.com'
+            }
+        }       
+              
     }
-
-    stage('deploy') {
-      steps {
-        writeFile(file: 'hello', text: 'building')
-      }
-    }
-
-    stage('post') {
-      steps {
-        sleep 2
-      }
-    }
-
-  }
 }
