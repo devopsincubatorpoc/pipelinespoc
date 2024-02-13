@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        node ('master')
+        node ('slave1')
     }
     stages {
         stage('Hello') {
